@@ -77,6 +77,5 @@ def cart():
 
 @products.route('/remove_all/')
 def remove_all():
-    for product in current_user.cart:
-        current_user.cart.remove(product)
+    current_user.clearCart()
     return redirect(url_for('products.cart'))

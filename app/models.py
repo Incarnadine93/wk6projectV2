@@ -74,6 +74,10 @@ class User(db.Model, UserMixin):
     def unfollow(self, user):
         self.following.remove(user)
         db.session.commit()
+
+    def clearCart(self):
+        self.cart = []
+        db.session.commit()
     
 
 #as an example for backref
@@ -126,6 +130,8 @@ class Post(db.Model):
     def likePost(self, user):
         self.liked.append(user)
         db.session.commit()
+    
+
 
     def to_dict(self):
         return {
@@ -188,3 +194,4 @@ class Product(db.Model):
     def removeProduct(self):
         db.session.remove()
         db.session.commit()
+
