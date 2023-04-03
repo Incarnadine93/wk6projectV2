@@ -52,12 +52,31 @@ def product():
     product_list = []
     for i in my_list:
         product_list.append(Product.query.filter_by(id=i).first())
-    if 'more_info' in request.form:
-        product = Product.query.filter_by(id=request.form['more_info']).first()
-        return render_template('single_product.html', form=form, product=product)
-    elif 'add_to_cart' in request.form:        
-        product_id = request.form['product_id']
-        product = Product.query.filter_by(id=product_id).first()
-        # cart.add(product)
-        flash(f'{product.name} added to cart')
     return render_template('products.html', form=form, product_list=product_list)
+
+@products.route('/single_product/<int:product_id>')
+def single_product(product_id):
+    product = Product.query.get(product_id)
+    return render_template('single_product.html', product=product)
+
+@products.route('/add_to_cart/<int:product_id>')
+def add_to_cart(product_id):
+    product = Product.query.get(product_id)
+    current_user.cart.append(product)
+    db.session.commit()
+    flash(f'{product.name} added to cart')
+    return redirect(url_for('products.product'))
+
+@products.route('/cart')
+def cart():
+    products = current_user.cart
+    total = 0
+    for product in products:
+        total += int(product.price)
+    return render_template('cart.html', products=products , total=total)
+
+@products.route('/remove_all/')
+def remove_all():
+    for product in current_user.cart:
+        current_user.cart.remove(product)
+    return redirect(url_for('products.cart'))

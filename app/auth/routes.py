@@ -57,7 +57,7 @@ def registerPage():
             user = User(username, email, password)            
             user.saveUser()
 
-            flash(f'Welcome to INSTURBlog {user.username}', 'success')
+            flash(f"Welcome to Carlmartson {user.username}", 'success')
             return redirect(url_for('auth.loginPage'))
     return render_template('register.html', form=form)
 

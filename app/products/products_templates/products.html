@@ -14,10 +14,9 @@
             <p class="card-text">Category: {{ p.category }}</p>
             <p class="card-text">Rating: {{ p.rating }}</p>
             <form method="POST">
-              <input type="hidden" name="product_id" value="{{ p.id }}">
-              <button type="submit" name="more_info" class="btn btn-secondary">More Info</button>
+              <a href="{{ url_for('products.single_product', product_id=p.id) }}" class="btn btn-outline-info">View Item</a>
               {% if current_user.is_authenticated %}
-                  <button type="submit" name="add_to_cart" class="btn btn-secondary">Add To Cart</button>
+              <a href="{{ url_for('products.add_to_cart', product_id=p.id) }}" class="btn btn-primary">Add to cart</a>
               {% endif %}
           </form>
           </div>

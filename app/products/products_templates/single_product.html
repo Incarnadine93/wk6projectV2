@@ -3,27 +3,18 @@
 {% block content %}
 
   <div class="row">
-    {% for p in product_list %}
       <div class="col-sm-2 mb-2" id="roster">
         <div class="card">
-          <img src="{{ p.img_url }}" class="card-img-top" alt="{{ p.name }}">
+          <img src="{{ product.img_url }}" class="card-img-top" alt="{{ product.name }}">
           <div class="card-body">
-            <h5 class="card-title">{{ p.name }}</h5>
-            <p class="card-text">Price: ${{ p.price }}</p>
-            <p class="card-text">Description: {{ p.description }}</p>
-            <p class="card-text">Category: {{ p.category }}</p>
-            <p class="card-text">Rating: {{ p.rating }}</p>
-            <form method="POST">
-              <input type="hidden" name="product_id" value="{{ p.id }}">
-              <button type="submit" name="more_info" class="btn btn-secondary">More Info</button>
-              {% if current_user.is_authenticated %}
-                  <button type="submit" name="add_to_cart" class="btn btn-secondary">Add To Cart</button>
-              {% endif %}
-          </form>
+            <h5 class="card-title">{{ product.name }}</h5>
+            <p class="card-text">Price: ${{ product.price }}</p>
+            <p class="card-text">Description: {{ product.description }}</p>
+            <p class="card-text">Category: {{ product.category }}</p>
+            <p class="card-text">Rating: {{ product.rating }}</p>
           </div>
         </div>
       </div>
-    {% endfor %}
   </div>
 
 

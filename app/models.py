@@ -55,6 +55,17 @@ class User(db.Model, UserMixin):
         backref = db.backref('cart', lazy='dynamic'),
         lazy = 'dynamic'
     )
+    def add(self, user):
+        self.cart.append(user)
+        db.session.commit()
+    
+    def empty(self):
+        self.cart.clear()
+        db.session.commit()
+
+    def remove(self, user):
+        self.cart.remove(user)
+        db.session.commit()
 
     def follow(self, user):
         self.following.append(user)

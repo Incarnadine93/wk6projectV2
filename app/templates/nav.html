@@ -38,10 +38,7 @@
             <a class="nav-link">{{current_user.username}}</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="{{ url_for('ig.createPost') }}">Create Post</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="{{ url_for('ig.feed') }}">My feed</a>
+            <a class="nav-link active" aria-current="page" href="{{ url_for('products.cart') }}">Cart</a>
           </li>
           {% endif %}
         </ul>
