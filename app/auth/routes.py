@@ -26,7 +26,7 @@ def loginPage():
             if user:
                 if check_password_hash(user.password, password):  # <--NEW
                 #user.password == password:  --OLD way
-                    flash('YAY, you\'re logged in!', 'success')
+                    flash("We're ready to take your money now", 'success')
                     login_user(user)
                     
                     return redirect(url_for('homePage'))
